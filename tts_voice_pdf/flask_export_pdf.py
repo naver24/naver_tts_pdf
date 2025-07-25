@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()  # .env 파일에서 환경변수 로드
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:3000"])
+CORS(app, origins=["http://localhost:3000", "https://javis.shop"])
 
 SAVE_DIR = "./TTS_Resource"
 os.makedirs(SAVE_DIR, exist_ok=True)
