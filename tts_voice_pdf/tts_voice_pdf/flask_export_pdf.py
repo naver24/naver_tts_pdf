@@ -10,14 +10,13 @@ from dotenv import load_dotenv
 load_dotenv()  # .env 파일에서 환경변수 로드
 
 app = Flask(__name__)
-<<<<<<< HEAD:tts_voice_pdf/tts_voice_pdf/flask_export_pdf.py
+
 
 CORS(app, origins=["http://localhost:3000", "https://javis.shop","http://172.30.1.76:5173","http://192.168.0.164:5173"])
 
 
-=======
-CORS(app, origins=["http://localhost:3000", "https://javis.shop"])
->>>>>>> 1e3eb1429af896b337d26e8fd61ddbe3b38cd08e:tts_voice_pdf/flask_export_pdf.py
+
+
 
 SAVE_DIR = "./TTS_Resource"
 os.makedirs(SAVE_DIR, exist_ok=True)
