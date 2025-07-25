@@ -23,7 +23,7 @@ def javis_voice(text):
     # [3] 동적으로 받을곳
     #text = input("대화내용: ")
     text_voice = text
-    encText = urllib.parse.quote(f"트레블 자비스입니다 {text_voice}")
+    encText = urllib.parse.quote(text_voice)
 
     data = f"speaker=nara&volume=0&speed=0&pitch=0&format=mp3&text={encText}"
     data_bytes = data.encode('utf-8')

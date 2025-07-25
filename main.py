@@ -33,7 +33,10 @@ def echo():
     })
 @app.route('/tts', methods=['POST'])
 def generation_tts():
-    data = request.get_json()
+    if request.is_json:
+        data = request.get_json()
+    else:
+        data = request.form  # x-www-form-urlencoded도 처리 가능
     if not data or 'text' not in data:
         return jsonify({"status": "error", "message": "텍스트 데이터가 없습니다."}), 400
     print(data)
