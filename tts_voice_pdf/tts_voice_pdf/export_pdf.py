@@ -44,10 +44,10 @@ async def export_pdf(data: Conversation):
     pdf.add_page()
 # [3] 폰트를 정하자
     try:
-        pdf.add_font('Nanum', '', 'NanumGothic.ttf', uni=True)
-        pdf.set_font('Nanum', '', 12)
+        pdf.add_font('MaruBuri', '', 'MaruBuri-Regular.ttf')
+        pdf.set_font('MaruBuri', '', 12)
     except RuntimeError:
-        return JSONResponse(status_code=500, content={"error": "폰트 'NanumGothic.ttf'를 찾을 수 없습니다."})
+        return JSONResponse(status_code=500, content={"error": "폰트 'MaruBuri-Regular.ttf'를 찾을 수 없습니다."})
 
     for line in data.conversation.split('\n'):
         pdf.cell(200, 10, txt=line, ln=True)

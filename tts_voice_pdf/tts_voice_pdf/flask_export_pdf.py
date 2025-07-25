@@ -1,6 +1,7 @@
 from flask import Flask, request, send_file, jsonify, render_template_string, redirect, url_for
 from flask_cors import CORS
 from fpdf import FPDF
+from fpdf.enums import XPos, YPos
 from datetime import datetime
 import os
 from uuid import uuid4
@@ -100,13 +101,13 @@ def export_pdf():
     pdf.add_page()
 
     try:
-        pdf.add_font('Nanum', '', 'NanumGothic.ttf', uni=True)
-        pdf.set_font('Nanum', '', 12)
+       pdf.add_font('MaruBuri', '', 'MaruBuri-Regular.ttf')
+       pdf.set_font('MaruBuri', '', 12)
     except RuntimeError:
-        return jsonify({"error": "폰트 'NanumGothic.ttf'를 찾을 수 없습니다."}), 500
+        return jsonify({"error": "폰트 'MaruBuri-Regular.ttf'를 찾을 수 없습니다."}), 500
 
     for line in conversation.split('\n'):
-        pdf.cell(200, 10, txt=line, ln=True)
+        pdf.cell(200, 10, text=line,new_x=XPos.LMARGIN, new_y=YPos.NEXT)
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S") + f"_{uuid4().hex[:6]}"
     file_name = f"javis-{timestamp}.pdf"
