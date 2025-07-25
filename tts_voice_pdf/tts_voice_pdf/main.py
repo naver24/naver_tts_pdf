@@ -7,7 +7,10 @@ import gene_tts
 
 app = Flask(__name__)
 
+
 CORS(app, origins=["http://localhost:3000", "https://javis.shop","http://172.30.1.76:5173","http://192.168.0.164:5173"])
+
+
 
 
 
