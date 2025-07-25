@@ -3,19 +3,22 @@ import urllib.request
 import urllib.parse
 import datetime
 from uuid import uuid4
-import boto3    
+import boto3 
+from dotenv import load_dotenv   
+
+load_dotenv() # .env 파일에서 환경변수 로드
 
 def javis_voice(text):
 # [1] 네이버 클라우드 Clova 인증
-    client_id = "gsenzn6bm9"
-    client_secret = "1N01Z41rigR9Xk4pKWaSxRgNNWf3snb369AadMM6"
+    client_id = os.getenv("client_id")
+    client_secret = os.getenv("client_secret")
 
     # [2] 네이버 Object Storage 인증
-    ACCESS_KEY = "ncp_iam_BPASKR7J1yWCFAEIU3Yi"
-    SECRET_KEY = "ncp_iam_BPKSKRIYkoyXuvgK72gciKTlu9cfCDYxkW"
+    ACCESS_KEY = os.getenv("ACCESS_KEY")
+    SECRET_KEY = os.getenv("SECRET_KEY")
     REGION = "kr-standard"
     ENDPOINT = "https://kr.object.ncloudstorage.com"
-    BUCKET_NAME = "javis-test"  # 본인 버킷 이름으로 교체
+    BUCKET_NAME = os.getenv("BUCKET_NAME") # 본인 버킷 이름으로 교체
 
     # [3] 동적으로 받을곳
     #text = input("대화내용: ")

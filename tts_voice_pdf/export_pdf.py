@@ -24,11 +24,11 @@ SAVE_DIR = "./TTS_Resource"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
 # [2] 네이버 오브젝트스토리지 인증정보
-ACCESS_KEY = "ncp_iam_BPASKR3AMEKEEpZaH80i"
-SECRET_KEY = "ncp_iam_BPKSKRE5nUHehIcpWMDmHplZT3qPrPA1Gh"
+ACCESS_KEY = os.getenv("ACCESS_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 REGION = "kr-standard"
 ENDPOINT = "https://kr.object.ncloudstorage.com"
-BUCKET_NAME = "javis-test"
+BUCKET_NAME = os.getenv("BUCKET_NAME")
 
 
 

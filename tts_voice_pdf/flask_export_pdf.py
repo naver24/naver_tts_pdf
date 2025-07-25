@@ -5,6 +5,9 @@ from datetime import datetime
 import os
 from uuid import uuid4
 import boto3
+from dotenv import load_dotenv
+
+load_dotenv()  # .env 파일에서 환경변수 로드
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:3000"])
@@ -12,11 +15,11 @@ CORS(app, origins=["http://localhost:3000"])
 SAVE_DIR = "./TTS_Resource"
 os.makedirs(SAVE_DIR, exist_ok=True)
 
-ACCESS_KEY = "ncp_iam_BPASKR3AMEKEEpZaH80i"
-SECRET_KEY = "ncp_iam_BPKSKRE5nUHehIcpWMDmHplZT3qPrPA1Gh"
+ACCESS_KEY = os.getenv("ACCESS_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 REGION = "kr-standard"
 ENDPOINT = "https://kr.object.ncloudstorage.com"
-BUCKET_NAME = "javis-test"
+BUCKET_NAME = os.getenv("BUCKET_NAME")
 
 @app.route('/')
 def index():
@@ -52,25 +55,25 @@ def index():
     """
     return render_template_string(template, routes=routes)
 
-@app.route('/export/pdf', methods=['GET', 'POST'])
+@app.route('/export/pdf', methods=[ 'POST'])
 def export_pdf():
-    if request.method == 'GET':
+    """if request.method == 'GET':
         # 입력 폼 보여주기
         form_html = """
-        <!doctype html>
-        <html>
-        <head><title>Export PDF</title></head>
-        <body>
-          <h1>텍스트를 입력하세요</h1>
-          <form method="post">
-            <textarea name="conversation" rows="10" cols="50" placeholder="텍스트 입력..."></textarea><br>
-            <button type="submit">PDF 생성 및 다운로드</button>
-          </form>
-          <p><a href="{{ url_for('index') }}">← API 목록으로 돌아가기</a></p>
-        </body>
-        </html>
-        """
-        return render_template_string(form_html)
+        #<!doctype html>
+        #<html>
+        #<head><title>Export PDF</title></head>
+        #<body>
+         # <h1>텍스트를 입력하세요</h1>
+          #<form method="post">
+           # <textarea name="conversation" rows="10" cols="50" placeholder="텍스트 입력..."></textarea><br>
+            #<button type="submit">PDF 생성 및 다운로드</button>
+         # </form>
+          #<p><a href="{{ url_for('index') }}">← API 목록으로 돌아가기</a></p>
+       # </body>
+        #</html>
+        #"""
+        #return render_template_string(form_html)"""
 
     # POST 요청 처리 (폼 제출 or API 호출)
     conversation = None
