@@ -1,1 +1,4 @@
 .env
+TTS_Resource
+tts_voice_pdf
+__pycache__
