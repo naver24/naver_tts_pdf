@@ -26,11 +26,17 @@ def javis_voice(text):
     encText = urllib.parse.quote(f"트레블 자비스입니다 {text_voice}")
 
     data = f"speaker=nara&volume=0&speed=0&pitch=0&format=mp3&text={encText}"
+    data_bytes = data.encode('utf-8')
+    
     url = "https://naveropenapi.apigw.ntruss.com/tts-premium/v1/tts"
-    request = urllib.request.Request(url)
+    
+    
+    request = urllib.request.Request(url, data=data_bytes)
+    request.method = "POST"
+    
     request.add_header("X-NCP-APIGW-API-KEY-ID", client_id)
     request.add_header("X-NCP-APIGW-API-KEY", client_secret)
-
+    request.add_header("Content-Type", "application/x-www-form-urlencoded")
     response = urllib.request.urlopen(request, data=data.encode('utf-8'))
     rescode = response.getcode()
 
