@@ -11,8 +11,8 @@ def javis_voice(text):
     client_secret = "1N01Z41rigR9Xk4pKWaSxRgNNWf3snb369AadMM6"
 
     # [2] 네이버 Object Storage 인증
-    ACCESS_KEY = "ncp_iam_BPASKR3AMEKEEpZaH80i"
-    SECRET_KEY = "ncp_iam_BPKSKRE5nUHehIcpWMDmHplZT3qPrPA1Gh"
+    ACCESS_KEY = "ncp_iam_BPASKR7J1yWCFAEIU3Yi"
+    SECRET_KEY = "ncp_iam_BPKSKRIYkoyXuvgK72gciKTlu9cfCDYxkW"
     REGION = "kr-standard"
     ENDPOINT = "https://kr.object.ncloudstorage.com"
     BUCKET_NAME = "javis-test"  # 본인 버킷 이름으로 교체
